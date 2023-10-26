@@ -63,3 +63,6 @@ The script may take some time to complete, depending on your system's performanc
 ## Disclaimer
 
 This script is provided as-is and without any warranties. Use it at your own risk, and ensure it is appropriate for your specific system and use case.
+
+CasaOS - http://IP/HOSTNAME:80
+Cockpit - https://IP/HOSTNAME:9090/
