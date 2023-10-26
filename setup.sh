@@ -31,7 +31,8 @@ sudo apt install ffmpeg -y
 # Install NVIDIA GPU drivers
 if lspci | grep -i nvidia; then
   echo "Nvidia GPU detected"
-  sudo apt update && sudo apt install nvidia-driver-515 nvidia-dkms-515 nvidia-smi -y
+  sudo apt update
+  sudo apt install nvidia-driver-515 nvidia-dkms-515 nvidia-smi -y
 else
   echo "Nvidia GPU not detected"
 fi
@@ -49,19 +50,6 @@ if lspci | grep -i amd; then
   sudo usermod -a -G render $LOGNAME
 else
   echo "AMD GPU not detected"
-fi
-
-# Install Coral EdgeTpu packages
-if lspci -nn | grep 089a; then
-  echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
-  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-  sudo apt update
-  sudo apt install gasket-dkms libedgetpu1-std
-  sudo sh -c "echo 'SUBSYSTEM==\"apex\", MODE=\"0660\", GROUP=\"apex\"' >> /etc/udev/rules.d/65-apex.rules"
-  sudo groupadd apex
-  sudo adduser $USER apex
-else
-  echo "Coral EdgeTpu PCIE not detected"
 fi
 
 # Update and upgrade system
