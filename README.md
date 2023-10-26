@@ -30,6 +30,13 @@ Before running this script, make sure your system meets the following prerequisi
 
 5. Follow any prompts or instructions provided by the script.
 
+6. Applications are availible at:
+
+   ```
+   CasaOS - http://IP/HOSTNAME:80
+   Cockpit - https://IP/HOSTNAME:9090/
+   ```
+
 ## Script Overview
 
 Here's an overview of what the script does:
