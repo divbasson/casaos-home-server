@@ -1,0 +1,65 @@
+name: sonarr-tmc
+services:
+  app:
+    cpu_shares: 90
+    command: []
+    container_name: sonarr
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    image: lscr.io/linuxserver/sonarr:4.0.0-develop
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/sonarr/icon.png
+    ports:
+      - target: 8989
+        published: "35419"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/TMC-Store/sonarr-tmc/config
+        target: /config
+      - type: bind
+        source: /media/devmon/1TB EXT/downloads/tv
+        target: /tv
+      - type: bind
+        source: /media/devmon/1TB EXT
+        target: /hdd
+      - type: bind
+        target: /6tb
+        source: /6tb
+    devices: []
+    cap_add: []
+    environment: []
+    network_mode: bridge
+    privileged: false
+x-casaos:
+  architectures:
+    - amd64
+    - arm
+    - arm64
+  author: sonarr
+  category: TMCstore
+  description:
+    en_us: Sonarr is a popular open-source software application used for managing
+      and automating the process of downloading, organizing, and tracking TV
+      shows.
+  developer: sonarr
+  hostname: ""
+  icon: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/sonarr/icon.png
+  index: /
+  main: app
+  port_map: "35419"
+  scheme: http
+  screenshot_link:
+    - https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/sonarr/screenshot-01.png
+  store_app_id: sonarr-tmc
+  tagline:
+    en_us: Sonarr is a popular open-source software application used for managing
+      and automating the process of downloading, organizing, and tracking TV
+      shows.
+  thumbnail: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/sonarr/thumbnail.png
+  title:
+    custom: ""
+    en_us: Sonarr v4+

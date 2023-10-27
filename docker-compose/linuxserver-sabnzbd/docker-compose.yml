@@ -1,0 +1,85 @@
+name: linuxserver-sabnzbd
+services:
+  app:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    environment:
+      - PGID=000
+      - PUID=000
+      - TZ=Africa/Johannesburg
+    image: linuxserver/sabnzbd:4.0.3
+    labels:
+      icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sabnzbd-icon.png
+    ports:
+      - target: 8080
+        published: "8081"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/sabnzbd/config
+        target: /config
+      - type: bind
+        source: /media/devmon/1TB EXT/downloads
+        target: /downloads
+      - type: bind
+        source: /media/devmon/1TB EXT/incomplete-downloads
+        target: /incomplete-downloads
+      - type: bind
+        source: /media/devmon/1TB EXT/downloads/inprogress-movies
+        target: /inprogress-movies
+      - type: bind
+        source: /media/devmon/1TB EXT/downloads/inprogress-tv
+        target: /inprogress-tv
+      - type: bind
+        source: /media/devmon/1TB EXT/movies
+        target: /downloads/movies
+      - type: bind
+        target: /6tb
+        source: /6tb
+    x-casaos:
+      envs:
+        - container: PUID
+          description:
+            en_us: for UserID
+        - container: PGID
+          description:
+            en_us: for GroupID
+        - container: TZ
+          description:
+            en_us: specify a timezone to use, see this list.
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+    container_name: ""
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  author: WisdomSky
+  category: LinuxServer.io
+  description:
+    en_us: "Visit homepage: https://hub.docker.com/r/linuxserver/sabnzbd/"
+  developer: LinuxServer.io
+  hostname: 192.168.0.3
+  icon: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sabnzbd-icon.png
+  index: /
+  main: app
+  port_map: "8081"
+  project_url: http://sabnzbd.org/
+  scheme: http
+  store_app_id: linuxserver-sabnzbd
+  tagline:
+    en_us: Makes Usenet as simple and streamlined as possible by automating
+      everything we can. All you have to do is add an. Nzb. SABnzbd takes over
+      from there, where it will be automatically downloaded, verified, repaired,
+      extracted and filed away with zero human interaction.
+  thumbnail: https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/sabnzbd-banner.png
+  title:
+    custom: ""
+    en_us: Sabnzbd
