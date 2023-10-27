@@ -1,26 +1,27 @@
 #!/bin/bash
 
+# Update and upgrade system
 sudo apt update && sudo apt upgrade -y
 
+# Install essential packages
 sudo apt install build-essential -y
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Configure Homebrew
+# Configure Homebrew and set up environment
 echo >> ~/.bashrc
 echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# Brew doctor
+# Check Homebrew installation
 brew doctor
 
-# Install GCC
+# Install GCC using Homebrew
 brew install gcc
 
 # Install Cockpit
-. /etc/os-release
-echo ${VERSION_CODENAME}
+source /etc/os-release
 sudo apt install -t ${VERSION_CODENAME}-backports cockpit -y
 
 # Setup 45drives repo
@@ -32,7 +33,7 @@ sudo apt-get install cockpit-file-sharing cockpit-identities -y
 # Install dependencies
 sudo apt install ffmpeg -y
 
-# Install NVIDIA GPU drivers
+# Install GPU drivers
 if lspci | grep -i nvidia; then
   echo "Nvidia GPU detected"
   sudo apt update
@@ -41,7 +42,6 @@ else
   echo "Nvidia GPU not detected"
 fi
 
-# Install AMD GPU drivers
 if lspci | grep -i amd; then
   echo "AMD GPU detected"
   sudo apt update
@@ -66,37 +66,32 @@ sudo apt install nfs-utils nfs-common -y
 curl -fsSL https://get.casaos.io | sudo bash
 
 # Register app stores in CasaOS
-casaos-cli app-management register app-store https://github.com/IceWhaleTech/_appstore/archive/refs/heads/main.zip
-sleep 6
-casaos-cli app-management register app-store https://casaos-appstore.paodayag.dev/linuxserver.zip
-sleep 6
-casaos-cli app-management register app-store https://play.cuse.eu.org/Cp0204-AppStore-Play.zip
-sleep 6
-casaos-cli app-management register app-store https://casaos-appstore.paodayag.dev/coolstore.zip
-sleep 6
-casaos-cli app-management register app-store https://paodayag.dev/casaos-appstore-edge.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/mr-manuel/CasaOS-HomeAutomation-AppStore/archive/refs/tags/latest.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/bigbeartechworld/big-bear-casaos/archive/refs/heads/master.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/mariosemes/CasaOS-TMCstore/archive/refs/heads/main.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/mariosemes/CasaOS-TMCstore/archive/refs/heads/main.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/arch3rPro/Pentest-Docker/archive/refs/heads/master.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/tigerinus/yet-another-casaos-appstore/archive/refs/heads/main.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/cloudrack-ca/Cloudrack-CasaOS-App-Repo/archive/refs/heads/master.zip
-sleep 6
-casaos-cli app-management register app-store http://104.234.11.251/CasaOS-Custom-AppStore.zip
-sleep 6
-casaos-cli app-management register app-store https://github.com/Double-A-92/CasaOS-AppStore/archive/refs/heads/main.zip
+app_store_urls=(
+  "https://github.com/IceWhaleTech/_appstore/archive/refs/heads/main.zip"
+  "https://casaos-appstore.paodayag.dev/linuxserver.zip"
+  "https://play.cuse.eu.org/Cp0204-AppStore-Play.zip"
+  "https://casaos-appstore.paodayag.dev/coolstore.zip"
+  "https://paodayag.dev/casaos-appstore-edge.zip"
+  "https://github.com/mr-manuel/CasaOS-HomeAutomation-AppStore/archive/refs/tags/latest.zip"
+  "https://github.com/bigbeartechworld/big-bear-casaos/archive/refs/heads/master.zip"
+  "https://github.com/mariosemes/CasaOS-TMCstore/archive/refs/heads/main.zip"
+  "https://github.com/mariosemes/CasaOS-TMCstore/archive/refs/heads/main.zip"
+  "https://github.com/arch3rPro/Pentest-Docker/archive/refs/heads/master.zip"
+  "https://github.com/tigerinus/yet-another-casaos-appstore/archive/refs/heads/main.zip"
+  "https://github.com/cloudrack-ca/Cloudrack-CasaOS-App-Repo/archive/refs/heads/master.zip"
+  "http://104.234.11.251/CasaOS-Custom-AppStore.zip"
+  "https://github.com/Double-A-92/CasaOS-AppStore/archive/refs/heads/main.zip"
+)
 
+for app_store_url in "${app_store_urls[@]}"; do
+  casaos-cli app-management register app-store "$app_store_url"
+  sleep 6
+done
+
+# Restart CasaOS app management service
 sudo systemctl restart casaos-app-management.service
 
-
-echo "Installation comlpete"
-echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1)":80
-echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1)":9090
+# Display installation completion message
+echo "Installation complete"
+echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1):80"
+echo "Cockpit URL is http://$(hostname -I | cut -d' ' -f1):9090"
