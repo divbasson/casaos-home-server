@@ -9,7 +9,8 @@ Before running this script, make sure your system meets the following prerequisi
 - You have administrative privileges (the ability to use `sudo`).
 - You are running a compatible Linux distribution with `apt` package manager.
 - Your system has an internet connection to download packages.
-
+- You have curl installed (the ability to use `curl`).
+- 
 ## Usage
 
 1. Open a terminal on your Linux system.
@@ -45,12 +46,9 @@ Here's an overview of what the script does:
 9. Installs Cockpit packages for file sharing and identities.
 10. Installs FFmpeg and checks for NVIDIA GPU presence and installs appropriate drivers if found.
 11. Checks for AMD GPU presence and installs appropriate drivers if found.
-12. Checks for Coral Edge TPU PCIe presence and installs the required packages.
 13. Updates and upgrades your system again.
-14. Installs NFS utilities.
-15. Searches for NFS-related packages.
-16. Installs CasaOS, an operating system for managing your home server.
-17. Registers multiple app stores in CasaOS.
+14. Installs CasaOS, an operating system for managing your home server.
+15. Registers multiple app stores in CasaOS.
 
 **Note:** Please review the script carefully to understand what it's doing before running it on your system, and ensure it is compatible with your system configuration.
 
