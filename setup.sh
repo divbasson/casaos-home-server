@@ -66,6 +66,7 @@ sudo apt install nfs-utils nfs-common -y
 curl -fsSL https://get.casaos.io | sudo bash
 
 # Register app stores in CasaOS
+
 app_store_urls=(
   "https://github.com/IceWhaleTech/_appstore/archive/refs/heads/main.zip"
   "https://casaos-appstore.paodayag.dev/linuxserver.zip"
