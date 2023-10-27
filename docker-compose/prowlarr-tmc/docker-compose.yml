@@ -1,0 +1,64 @@
+name: prowlarr-tmc
+services:
+  app:
+    cpu_shares: 50
+    command: []
+    container_name: prowlarr
+    deploy:
+      resources:
+        limits:
+          memory: 6497M
+    image: lscr.io/linuxserver/prowlarr:latest
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/prowlarr/icon.png
+    ports:
+      - target: 9696
+        published: "32885"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/TMC-Store/prowlarr-tmc/config
+        target: /config
+      - type: bind
+        source: /media/devmon/1TB EXT
+        target: /mount
+      - type: bind
+        target: /6tb
+        source: /6tb
+    devices: []
+    cap_add: []
+    environment: []
+    network_mode: bridge
+    privileged: false
+x-casaos:
+  architectures:
+    - amd64
+    - arm
+    - arm64
+  author: prowlarr
+  category: TMCstore
+  description:
+    en_us: Prowlarr is an indexer manager/proxy built on the popular *arr
+      .net/reactjs base stack to integrate with your various PVR apps. Prowlarr
+      supports management of both Torrent Trackers and Usenet Indexers. It
+      integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr
+      offering complete management of your indexers with no per app Indexer
+      setup required (we do it all).
+  developer: prowlarr
+  hostname: ""
+  icon: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/prowlarr/icon.png
+  index: /
+  main: app
+  port_map: "32885"
+  scheme: http
+  screenshot_link:
+    - https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/prowlarr/screenshot-01.png
+  store_app_id: prowlarr-tmc
+  tagline:
+    en_us: Prowlarr is an indexer manager/proxy built on the popular *arr
+      .net/reactjs base stack to integrate with your various PVR apps.
+  thumbnail: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/prowlarr/thumbnail.png
+  title:
+    custom: ""
+    en_us: Prowlarr

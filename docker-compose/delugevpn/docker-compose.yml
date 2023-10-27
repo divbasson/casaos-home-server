@@ -1,0 +1,72 @@
+name: fervent_sumie
+services:
+  arch-delugevpn:
+    cpu_shares: 90
+    command: []
+    container_name: delugevpn
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    environment:
+      - DEBUG=false
+      - DELUGE_DAEMON_LOG_LEVEL=info
+      - DELUGE_ENABLE_WEBUI_PASSWORD=yes
+      - DELUGE_WEB_LOG_LEVEL=info
+      - ENABLE_PRIVOXY=yes
+      - LAN_NETWORK=192.168.1.0/24
+      - NAME_SERVERS=8.8.8.8,8.8.4.4,192.168.1.1
+      - PGID=0
+      - PUID=0
+      - STRICT_PORT_FORWARD=yes
+      - UMASK=000
+      - VPN_CLIENT=openvpn
+      - VPN_ENABLED=yes
+      - VPN_INPUT_PORTS=1234
+      - VPN_OUTPUT_PORTS=5678
+      - VPN_PASS=
+      - VPN_PROV=
+      - VPN_USER=
+    image: binhex/arch-delugevpn
+    ports:
+      - target: 8112
+        published: "8112"
+        protocol: tcp
+      - target: 8118
+        published: "8118"
+        protocol: tcp
+      - target: 58846
+        published: "58846"
+        protocol: tcp
+      - target: 58946
+        published: "58946"
+        protocol: tcp
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /apps/docker/deluge/data
+        target: /data
+      - type: bind
+        source: /DATA/AppData/config
+        target: /config
+      - type: bind
+        source: /etc/localtime
+        target: /etc/localtime
+      - type: bind
+        source: /6tb
+        target: /6tb
+    devices: []
+    cap_add: []
+    network_mode: bridge
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://icons.iconarchive.com/icons/gartoon-team/gartoon-apps/512/deluge-icon.png
+  index: /
+  port_map: "8112"
+  scheme: http
+  store_app_id: fervent_sumie
+  title:
+    custom: delugevpn

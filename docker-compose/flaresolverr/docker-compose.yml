@@ -1,0 +1,64 @@
+name: flaresolverr
+services:
+  app:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    environment:
+      - CAPTCHA_SOLVER=none
+      - LOG_HTML=false
+      - LOG_LEVEL=info
+      - PORT=8191
+      - PROMETHEUS_ENABLED=false
+      - PROMETHEUS_PORT=8192
+      - TZ=Africa/Johannesburg
+    image: flaresolverr/flaresolverr:v3.3.6
+    labels:
+      icon: https://avatars.githubusercontent.com/u/10577978
+    ports:
+      - target: 8191
+        published: "8191"
+        protocol: tcp
+      - target: 8192
+        published: "8192"
+        protocol: tcp
+    restart: unless-stopped
+    volumes: []
+    devices: []
+    cap_add: []
+    network_mode: bridge
+    privileged: false
+    container_name: FlareSolverr
+x-casaos:
+  architectures:
+    - amd64
+    - arm
+    - arm64
+  author: WisdomSky
+  category: Coolstore
+  description:
+    en_us: FlareSolverr is a proxy server to bypass Cloudflare protection.
+      FlareSolverr starts a proxy server, and it waits for user requests in an
+      idle state using few resources. When some request arrives, it uses
+      Selenium with the undetected-chromedriver to create a web browser
+      (Chrome). It opens the URL with user parameters and waits until the
+      Cloudflare challenge is solved (or timeout). The HTML code and the cookies
+      are sent back to the user, and those cookies can be used to bypass
+      Cloudflare using other HTTP clients.
+  developer: FlareSolverr
+  hostname: ""
+  icon: https://avatars.githubusercontent.com/u/10577978
+  index: /
+  main: app
+  port_map: "8191"
+  scheme: http
+  store_app_id: flaresolverr
+  tagline:
+    en_us: FlareSolverr is a proxy server to bypass Cloudflare protection.
+  thumbnail: https://avatars.githubusercontent.com/u/10577978
+  title:
+    custom: FlareSolverr
+    en_us: FlareSolverr
