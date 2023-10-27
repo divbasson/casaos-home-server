@@ -16,11 +16,10 @@ for folder in $folders; do
         # Change to the folder
         cd "$folder" || exit
         
-        # Run docker-compose up
-        sudo casaos-cli app-management install -f docker-compose.yml --root-url localhost:80
-        
+        # Run app install via cli
+        casaos-cli app-management install -f docker-compose.yml --root-url localhost:80 && wait 5
         # Wait for the container to complete
-        sudo docker wait "$(sudo docker-compose ps -q)"
+        sudo docker ps -a
         
         # Change back to the previous directory
         cd - || exit

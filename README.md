@@ -30,8 +30,6 @@ Before running this script, make sure your system meets the following prerequisi
 
 5. Follow any prompts or instructions provided by the script.
 
-6. Applications are availible at:
-
 ## Script Overview
 
 Here's an overview of what the script does:
@@ -55,9 +53,6 @@ Here's an overview of what the script does:
 17. Registers multiple app stores in CasaOS.
 
 **Note:** Please review the script carefully to understand what it's doing before running it on your system, and ensure it is compatible with your system configuration.
-
-# README
-
 
 ### deploy_apps.sh
 
