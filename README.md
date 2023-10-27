@@ -56,6 +56,14 @@ Here's an overview of what the script does:
 
 ### deploy_apps.sh
 
+   ```bash
+   chmod +x deploy_apps.sh
+   ```
+
+   ```bash
+   ./deploy_apps.sh
+   ```
+
 Once you have successfully executed `setup.sh`, you can proceed to run the `deploy_apps.sh` script.
 
 The `deploy_apps.sh` script automates the process of deploying your applications using Docker Compose. It iterates through each folder in the current directory, runs `docker-compose up` in each folder, and waits for one container to complete before moving on to the next folder. This ensures that each application is correctly deployed and running before proceeding to the next one.
