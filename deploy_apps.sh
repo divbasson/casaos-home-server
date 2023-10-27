@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cd docker-compose
+# Copy starting apps to system folder
+sudo mkdir /var/lib/casaos/apps/
+sudo cp -r docker-compose/* /var/lib/casaos/apps/
+sudo chmod -R 755 /var/lib/casaos/apps
+cd /var/lib/casaos/apps
 
 # Get a list of all folders in the current directory
 folders=$(find . -maxdepth 1 -type d)
@@ -12,11 +16,10 @@ for folder in $folders; do
         # Change to the folder
         cd "$folder" || exit
         
-        # Run docker-compose up
-        docker-compose up -d
-        
+        # Run app install via cli
+        casaos-cli app-management install -f docker-compose.yml --root-url localhost:80 && wait 5
         # Wait for the container to complete
-        docker wait "$(docker-compose ps -q)"
+        sudo docker ps -a
         
         # Change back to the previous directory
         cd - || exit

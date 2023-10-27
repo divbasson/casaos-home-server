@@ -30,8 +30,6 @@ Before running this script, make sure your system meets the following prerequisi
 
 5. Follow any prompts or instructions provided by the script.
 
-6. Applications are availible at:
-
 ## Script Overview
 
 Here's an overview of what the script does:
@@ -55,6 +53,23 @@ Here's an overview of what the script does:
 17. Registers multiple app stores in CasaOS.
 
 **Note:** Please review the script carefully to understand what it's doing before running it on your system, and ensure it is compatible with your system configuration.
+
+### deploy_apps.sh
+
+Once you have successfully executed `setup.sh`, you can proceed to run the `deploy_apps.sh` script.
+
+The `deploy_apps.sh` script automates the process of deploying your applications using Docker Compose. It iterates through each folder in the current directory, runs `docker-compose up` in each folder, and waits for one container to complete before moving on to the next folder. This ensures that each application is correctly deployed and running before proceeding to the next one.
+
+To run `deploy_apps.sh`, make sure you have completed the setup process by executing `setup.sh`. Then, navigate to the project directory and execute the following command:
+
+
+Make sure to run `deploy_apps.sh` after `setup.sh` to ensure successful deployment of your applications.
+
+Please note that both `setup.sh` and `deploy_apps.sh` scripts should be executable. If they are not, you can make them executable by running the following command for each script:
+
+
+That's it! You should now be able to easily deploy your applications using the `deploy_apps.sh` script after running the initial setup with `setup.sh`.
+
 
 ## Caution
 
