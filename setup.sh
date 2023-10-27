@@ -94,9 +94,10 @@ casaos-cli app-management register app-store http://104.234.11.251/CasaOS-Custom
 sleep 6
 casaos-cli app-management register app-store https://github.com/Double-A-92/CasaOS-AppStore/archive/refs/heads/main.zip
 
+# Restart CasaOS App Management
 sudo systemctl restart casaos-app-management.service
 
-
+# Print URLs
 echo "Installation comlpete"
 echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1)":80
 echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1)":9090
