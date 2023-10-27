@@ -19,13 +19,15 @@ brew doctor
 brew install gcc
 
 # Install Cockpit
+. /etc/os-release
+echo ${VERSION_CODENAME}
 sudo apt install -t ${VERSION_CODENAME}-backports cockpit -y
 
 # Setup 45drives repo
 curl -sSL https://repo.45drives.com/setup | sudo bash
 
 # Install Cockpit packages
-sudo apt install cockpit-file-sharing cockpit-identities -y
+sudo apt-get install cockpit-file-sharing cockpit-identities -y
 
 # Install dependencies
 sudo apt install ffmpeg -y
@@ -65,31 +67,37 @@ curl -fsSL https://get.casaos.io | sudo bash
 
 # Register app stores in CasaOS
 casaos-cli app-management register app-store https://github.com/IceWhaleTech/_appstore/archive/refs/heads/main.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://casaos-appstore.paodayag.dev/linuxserver.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://play.cuse.eu.org/Cp0204-AppStore-Play.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://casaos-appstore.paodayag.dev/coolstore.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://paodayag.dev/casaos-appstore-edge.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/mr-manuel/CasaOS-HomeAutomation-AppStore/archive/refs/tags/latest.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/bigbeartechworld/big-bear-casaos/archive/refs/heads/master.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/mariosemes/CasaOS-TMCstore/archive/refs/heads/main.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/mariosemes/CasaOS-TMCstore/archive/refs/heads/main.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/arch3rPro/Pentest-Docker/archive/refs/heads/master.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/tigerinus/yet-another-casaos-appstore/archive/refs/heads/main.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/cloudrack-ca/Cloudrack-CasaOS-App-Repo/archive/refs/heads/master.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store http://104.234.11.251/CasaOS-Custom-AppStore.zip
-sleep 4
+sleep 6
 casaos-cli app-management register app-store https://github.com/Double-A-92/CasaOS-AppStore/archive/refs/heads/main.zip
 
+# Restart CasaOS App Management
 sudo systemctl restart casaos-app-management.service
+
+# Print URLs
+echo "Installation comlpete"
+echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1)":80
+echo "CasaOS URL is http://$(hostname -I | cut -d' ' -f1)":9090
