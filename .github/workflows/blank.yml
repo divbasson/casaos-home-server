@@ -26,7 +26,8 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
+      - uses: actions/checkout@master
       - name: ShellCheck Action
-        # You may pin to the exact commit or the version.
-        # uses: fearphage/shellcheck-action@430e230b33ad06e9316aec3222b7c6419ddea83f
         uses: fearphage/shellcheck-action@0.0.4
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
