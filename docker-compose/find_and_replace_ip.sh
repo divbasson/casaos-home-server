@@ -3,11 +3,13 @@
 # Function to replace IP addresses in a file
 replace_ip_in_file() {
     local file="$1"
-    local old_ip="192.168.0."
+    local old_ips=("192.168.0." "192.168.1.")
     local new_ip="$2"
 
-    # Use sed to replace IP addresses in the file
-    sed -i "s/$old_ip[0-9]\{1,3\}/$new_ip/g" "$file"
+    for ip in "${old_ips[@]}"; do
+        # Use sed to replace IP addresses in the file
+        sed -i "s/$ip[0-9]\{1,3\}/$new_ip/g" "$file"
+    done
 }
 
 # Prompt the user for the new IP address
