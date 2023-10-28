@@ -1,11 +1,22 @@
-# Script README
+# CasaOS Home Server
 
-This script is intended to automate the setup and configuration of various software and packages on a Linux system. It includes the installation of development tools, Homebrew, various GPU drivers, CasaOS, and registration of multiple app stores. Before running this script, please ensure that you have the necessary permissions to execute administrative commands using `sudo`.
+Welcome to the CasaOS Home Server GitHub Wiki! This wiki is intended to provide documentation, instructions, and additional information related to the CasaOS Home Server project.
 
-## Prerequisites
+## Table of Contents
 
-Before running this script, make sure your system meets the following prerequisites:
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [License](#license)
 
+
+## Introduction
+
+The CasaOS Home Server is a project aimed at creating a home server solution to manage and control various aspects of your smart home, including devices, automation, and more. This repository serves as the primary source for the CasaOS Home Server application.
+=======
 - You have administrative privileges (the ability to use `sudo`).
 - You are running a compatible Linux distribution with `apt` package manager.
 - Your system has an internet connection to download packages.
@@ -13,18 +24,25 @@ Before running this script, make sure your system meets the following prerequisi
 - 
 ## Usage
 
-1. Open a terminal on your Linux system.
 
-2. Create a new text file (e.g., `setup.sh`) and paste the script contents into it.
+## Getting Started
 
-3. Make the file executable using the following command:
+### Installation
 
-   ```bash
-   chmod +x setup.sh
-   ```
+To get started with CasaOS Home Server, you can follow these steps:
 
-4. Execute the script with the following command:
+1. Clone the repository to your local machine:
 
+   ```shell
+   git clone https://github.com/divbasson/casaos-home-server.git
+   
+# Change directory to the project folder
+cd casaos-home-server
+
+
+# Install dependencies (you may need Node.js and npm)
+npm install
+=======
    ```bash
    ./setup.sh
    ```
