@@ -10,18 +10,18 @@ if [ "$choice" == "1" ]; then
     # Execute the backup script
 
 # Step 1: Create a TAR archive of the /DATA directory
-tar -cf /tmp/DATA.tar /DATA
+sudo tar -cf /tmp/DATA.tar /DATA/*
 
 # Step 2: Create a TAR archive of the /var/lib/casaos/apps/ directory
-tar -cf /tmp/apps.tar /var/lib/casaos/apps
+sudo tar -cf /tmp/apps.tar /var/lib/casaos/apps/*
 
 # Step 3: Combine the two TAR archives into a single backup archive
 backup_filename="/tmp/$(date +'%Y%m%d')-casaos-backup.tar"
-tar -cf "$backup_filename" -C /tmp DATA.tar -C /tmp apps.tar
+sudo tar -cf "$backup_filename" -C /tmp DATA.tar -C /tmp apps.tar
 
 # Step 4: Delete the temporary TAR files
-rm /tmp/DATA.tar
-rm /tmp/apps.tar
+sudo rm /tmp/DATA.tar
+sudo rm /tmp/apps.tar
 
 echo "Backup created at $backup_filename"
     echo "Running backup script..."
@@ -30,20 +30,20 @@ else
     if [ "$choice" == "2" ]; then
         # Execute the restore script
 # Step 1: Extract the contents of the backup archive to /tmp/restore/
-tar -xf casaos-backup.tar -C /tmp/restore/
+sudo tar -xf casaos-backup.tar -C /tmp/restore/
 
 # Step 2: Copy the contents of the DATA extracted folder to /DATA
 if [ -d /tmp/restore/DATA ]; then
-    mkdir -p /DATA
-    cp -r /tmp/restore/DATA/* /DATA/
-    chmod -R 755 /DATA
+    sudo mkdir -p /DATA
+    sudo cp -r /tmp/restore/DATA/* /DATA/
+    sudo chmod -R 755 /DATA
 fi
 
 # Step 3: Copy the contents of the apps extracted folder to /var/lib/casaos/apps/
 if [ -d /tmp/restore/apps ]; then
-    mkdir -p /var/lib/casaos/apps
-    cp -r /tmp/restore/apps/* /var/lib/casaos/apps/
-    chmod -R 755 /var/lib/casaos/apps
+    sudo mkdir -p /var/lib/casaos/apps
+    sudo cp -r /tmp/restore/apps/* /var/lib/casaos/apps/
+    sudo chmod -R 755 /var/lib/casaos/apps
 fi
 
 # Step 4: Go to /var/lib/casaos/apps and run the provided script
