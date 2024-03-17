@@ -1,0 +1,49 @@
+version: '3.7'
+
+services:
+  motioneye:
+    container_name: "motioneye"
+    image: "ccrisan/motioneye:master-amd64"
+    command:
+      - "/bin/sh"
+      - "-c"
+      - >
+        test -e /etc/motioneye/motioneye.conf || cp /usr/share/motioneye/extra/motioneye.conf.sample \
+        /etc/motioneye/motioneye.conf ; /usr/local/bin/meyectl startserver -c /etc/motioneye/motioneye.conf
+    environment:
+      - "RTSP_AUTHENTICATION_METHOD=digest"
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    hostname: "motioneye"
+    ipc: "private"
+    logging:
+      driver: "json-file"
+      options: {}
+    mac_address: "02:42:ac:11:00:02"
+    network_mode: "bridge"
+    ports:
+      - "8765:8765/tcp"
+    restart: "unless-stopped"
+    volumes:
+      - "/DATA/AppData/motioneye/config:/etc/motioneye"
+    labels:
+      com.docker.compose.config-hash: "c364922b05a1e6b20d04d0f90d3963ddbe2736d2805b948ecc46ff962e51381b"
+      com.docker.compose.container-number: "1"
+      com.docker.compose.depends_on: ""
+      com.docker.compose.image: "sha256:692eccfe45a604d8e5331274c2388a2ecf65bb3f2f033232ed7e38f6f43cd1c3"
+      com.docker.compose.oneoff: "False"
+      com.docker.compose.project: "motioneye"
+      com.docker.compose.project.config_files: "/var/lib/casaos/apps/motioneye/docker-compose.yml"
+      com.docker.compose.project.working_dir: "/var/lib/casaos/apps/motioneye"
+      com.docker.compose.replace: "ecba7a422a2eef170d64845a84d3f0638f42c6bf8a69457f1cf59787e423b568"
+      com.docker.compose.service: "motioneye"
+      com.docker.compose.version: ""
+      icon: "https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Motioneye/icon.png"
+      maintainer: "Marcus Klein <himself@kleini.org>"
+      org.label-schema.build-date: "2019-12-15T11:59:13Z"
+      org.label-schema.docker.dockerfile: "extra/Dockerfile"
+      org.label-schema.license: "GPLv3"
+      org.label-schema.name: "motioneye"
+      org.label-schema.url: "https://github.com/ccrisan/motioneye/wiki"
+      org.label-schema.vcs-ref: "9f667cd487b141506635322e84a09355a0295857"
+      org.label-schema.vcs-type: "Git"
+      org.label-schema.vcs-url: "https://github.com/ccrisan/motioneye.git"

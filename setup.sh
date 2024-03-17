@@ -27,8 +27,11 @@ sudo apt install -t ${VERSION_CODENAME}-backports cockpit -y
 # Setup 45drives repo
 curl -sSL https://repo.45drives.com/setup | sudo bash
 
+# Update and upgrade system to get packages from 45drives repo
+sudo apt update
+
 # Install Cockpit packages
-sudo apt-get install cockpit-file-sharing cockpit-identities -y
+sudo apt-get install cockpit-storaged cockpit-file-sharing cockpit-identities cockpit-machines cockpit-ws cockpit-navigator -y
 
 # Install dependencies
 sudo apt install ffmpeg -y
@@ -86,7 +89,7 @@ app_store_urls=(
 
 for app_store_url in "${app_store_urls[@]}"; do
   casaos-cli app-management register app-store "$app_store_url"
-  sleep 6
+  sleep 10
 done
 
 # Restart CasaOS app management service

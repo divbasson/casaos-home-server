@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  linuxserver-hishtory-server-app-1:
+    container_name: "linuxserver-hishtory-server-app-1"
+    entrypoint:
+      - "/init"
+    environment:
+      - "PGID=1000"
+      - "PUID=1000"
+      - "TZ=Etc/UTC"
+      - "HISHTORY_POSTGRES_DB=postgresql://casaos:casaos@IP:5432/hishtory?sslmode=disable"
+      - "HISHTORY_SQLITE_DB="
+    hostname: "hishtory-server"
+    image: "linuxserver/hishtory-server:0.277.20240308"
+    ipc: "private"
+    labels:
+      build_version: "Linuxserver.io version:- v0.277-ls43 Build-date:- 2024-03-08T02:35:49+00:00"
+      com.docker.compose.config-hash: "2eb9b3bdd6c3fd5e9034e16619495172a9279c4df1f05c6717f1ecd7a1992892"
+      com.docker.compose.container-number: "1"
+      com.docker.compose.depends_on: ""
+     

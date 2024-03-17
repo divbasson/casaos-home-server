@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  jackett:
+    container_name: "jackett"
+    entrypoint:
+      - "/init"
+    environment:
+      - "PUID=1000"
+      - "TZ=Africa/Johannesburg"
+      - "AUTO_UPDATE=false"
+      - "PGID=1000"
+    hostname: "jackett"
+    image: "linuxserver/jackett:0.21.2002"
+    ipc: "private"
+    labels:
+      build_version: "Linuxserver.io version:- v0.21.2002-ls334 Build-date:- 2024-03-11T16:55:25+00:00"
+      com.docker.compose.config-hash: "6fbbb0289af3de0a1fcd3e7198b0c82f48a0f7967150ae3475cd2f1c57996d75"
+      com.docker.compose.container-number: "1"
+      com.docker.compose.depends_on: ""
+      com.docker.compose.image: "sha256:d9050a2adcc7027097325a0bde17740606685e386aae526fb5ec5a9b25a096de"
+      com.docker.compose.oneoff: "False"
+      com.docker.compose.project: "jackett"
+      com.docker.compose.project.config_files: "/var/lib/casaos/apps/jackett/docker-compose.yml"
+      com.docker.compose.project.working_dir: "/var/lib/casaos/apps/jackett"
+      com.docker.compose.replace: "c57e32565222c538f50773e184091604d15c90804f58d47a951644c103f42be2"
+      com.docker.compose.service: "jackett"
+    logging:
+      driver: "json-file"
+      options: {}
+    mac_address: "02:42:ac:11:00:08"
+    network_mode: "bridge"
+    ports:
+      - "9117:9117/tcp"
+    privileged: true
+    restart: "unless-stopped"
+    security_opt:
+      - "label=disable"
+    volumes:
+      - "/DATA/Downloads:/downloads"
+      - "/storage/AppData/jackett/config:/config"

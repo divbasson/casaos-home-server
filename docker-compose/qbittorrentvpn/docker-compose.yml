@@ -1,0 +1,132 @@
+name: qbittorrentvpn
+services:
+  qbittorrentvpn:
+    cap_add:
+      - NET_ADMIN
+    cpu_shares: 90
+    command:
+      - /bin/bash
+      - /etc/openvpn/start.sh
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+      - GUID=000
+      - LAN_NETWORK=192.168.0.0/24
+      - NAME_SERVERS=8.8.8.8,8.8.4.4
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - PUID=99
+      - UMASK=755
+      - VPN_ENABLED=true
+      - VPN_PASSWORD=
+      - VPN_USERNAME=
+      - WEBUI_PORT=8088
+    image: markusmcnugen/qbittorrentvpn
+    ports:
+      - target: 8088
+        published: "8088"
+        protocol: tcp
+      - target: 5538
+        published: "5538"
+        protocol: tcp
+      - target: 6681
+        published: "6681"
+        protocol: tcp
+      - target: 6681
+        published: "6681"
+        protocol: udp
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /6tb
+        target: /downloads
+      - type: bind
+        source: /DATA/AppData/qbittorrent
+        target: /config
+    x-casaos:
+      envs:
+        - container: GUID
+          description:
+            en_us: ""
+        - container: LAN_NETWORK
+          description:
+            en_us: ""
+        - container: NAME_SERVERS
+          description:
+            en_us: ""
+        - container: PUID
+          description:
+            en_us: ""
+        - container: UMASK
+          description:
+            en_us: ""
+        - container: VPN_ENABLED
+          description:
+            en_us: ""
+        - container: VPN_PASSWORD
+          description:
+            en_us: ""
+        - container: VPN_USERNAME
+          description:
+            en_us: ""
+        - container: WEBUI_PORT
+          description:
+            en_us: ""
+        - container: PATH
+          description:
+            en_us: ""
+        - container: DEBIAN_FRONTEND
+          description:
+            en_us: ""
+      ports:
+        - container: "8088"
+          description:
+            en_us: ""
+        - container: "5538"
+          description:
+            en_us: ""
+        - container: "6681"
+          description:
+            en_us: ""
+        - container: "6681"
+          description:
+            en_us: ""
+      volumes:
+        - container: /downloads
+          description:
+            en_us: ""
+        - container: /config
+          description:
+            en_us: ""
+    devices: []
+    network_mode: bridge
+    container_name: ""
+    hostname: ""
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+x-casaos:
+  architectures:
+    - amd64
+  author: CasaOS User
+  category: unknown
+  description:
+    en_us: ""
+  developer: unknown
+  icon: https://th.bing.com/th/id/OIP.x62JIhRm0wv2Y8ZdzveW1gHaHa?rs=1&pid=ImgDetMain
+  main: qbittorrentvpn
+  port_map: "8088"
+  scheme: http
+  store_app_id: qbittorrentvpn
+  tagline:
+    en_us: This is a compose app converted from a legacy app (CasaOS v0.4.3 or
+      earlier)
+  thumbnail: ""
+  tips:
+    custom: This is a compose app converted from a legacy app (CasaOS v0.4.3 or
+      earlier)
+  title:
+    en_us: qbittorrentvpn
+    custom: ""
+  hostname: ""
+  index: /
