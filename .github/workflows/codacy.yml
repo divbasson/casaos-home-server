@@ -37,6 +37,25 @@ jobs:
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout code
         uses: actions/checkout@v3
+      
+      - name: Run GitLeaks
+      # You may pin to the exact commit or the version.
+      # uses: gacts/gitleaks@790c062f441e96d9efb842b6baa0e60c037e9408
+        uses: gacts/gitleaks@v1.2.0
+        with:
+          # GitLeaks version
+          version: # default is latest
+          # Path to the config file
+          config-path: # optional
+          # Path to source (git repo, directory, file; current working directory by default)
+          path: # optional
+          # Set it to "true" to run GitLeaks, or "false" if you don't want it to run (you can do this later manually)
+          run: # optional, default is true
+          # Set "false" for exiting without an error when GitLeaks run failed
+          fail-on-error: # optional, default is true
+          # GitHub auth token. Since there's a default, this is typically not supplied by the user
+          github-token: # optional, default is ${{ github.token }}
+          
 
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI
@@ -53,34 +72,9 @@ jobs:
           # Force 0 exit code to allow SARIF file generation
           # This will handover control about PR rejection to the GitHub side
           max-allowed-issues: 2147483647
-          
-      - name: Gitleaks Scanner
-      # You may pin to the exact commit or the version.
-        uses: DariuszPorowski/github-action-gitleaks@5c3e70f794d4c928460daf621eff608f477c2510
-      #uses: DariuszPorowski/github-action-gitleaks@v2.0.9
-        with:
-          # Path to source (relative to $GITHUB_WORKSPACE) (default: $GITHUB_WORKSPACE)
-          source: # optional
-          # Config file path (relative to $GITHUB_WORKSPACE) (default build-in: /.gitleaks/UDMSecretChecks.toml)
-          config: # optional, default is /.gitleaks/UDMSecretChecks.toml
-          # Report file format: json, csv, sarif (default: json)
-          report_format: # optional, default is json
-          # Treat git repos as plain directories and scan those file (default: <not set>)
-          no_git: # optional
-          # Path to baseline with issues that can be ignored (relative to $GITHUB_WORKSPACE) (default: <not set>)
-          baseline_path: # optional
-          # Redact secrets from logs and stdout (default: true)
-          redact: # optional, default is true
-          # Fail if secrets founded (default: true)
-          fail: # optional, default is true
-          # Show verbose output from scan (default: true)
-          verbose: # optional, default is true
-          # Log level (trace, debug, info, warn, error, fatal) (default: info)
-          log_level: # optional, default is info
   
-        # Upload the SARIF file generated in the previous step
+      # Upload the SARIF file generated in the previous step
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v2
-          with:
-            sarif_file: results.sarif
-              
+        with:
+          sarif_file: results.sarif
