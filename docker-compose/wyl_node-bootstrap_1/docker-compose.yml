@@ -1,0 +1,58 @@
+name: wyl_node-bootstrap_1
+services:
+    wyl_node-bootstrap_1:
+        command:
+            - --cors
+            - -p
+            - "8850"
+        environment:
+            NODE_VERSION: 20.10.0
+            PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            YARN_VERSION: 1.22.19
+        image: aceberg/node-bootstrap
+        labels:
+            icon: https://th.bing.com/th/id/OIP.3R1Blc7rhJey6fgVSmyONAHaHa?rs=1&pid=ImgDetMain
+        network_mode: wyl_default
+        ports:
+            - target: 8850
+              published: "8850"
+              protocol: tcp
+        restart: unless-stopped
+        x-casaos:
+            envs:
+                - container: PATH
+                  description:
+                    en_us: ""
+                - container: NODE_VERSION
+                  description:
+                    en_us: ""
+                - container: YARN_VERSION
+                  description:
+                    en_us: ""
+            ports:
+                - container: "8850"
+                  description:
+                    en_us: ""
+networks:
+    default:
+        name: wyl_node-bootstrap_1_default
+x-casaos:
+    architectures:
+        - amd64
+    author: CasaOS User
+    category: unknown
+    description:
+        en_us: ""
+    developer: unknown
+    icon: https://th.bing.com/th/id/OIP.3R1Blc7rhJey6fgVSmyONAHaHa?rs=1&pid=ImgDetMain
+    main: wyl_node-bootstrap_1
+    port_map: "8850"
+    scheme: http
+    store_app_id: wyl_node-bootstrap_1
+    tagline:
+        en_us: This is a compose app converted from a legacy app (CasaOS v0.4.3 or earlier)
+    thumbnail: ""
+    tips:
+        custom: This is a compose app converted from a legacy app (CasaOS v0.4.3 or earlier)
+    title:
+        en_us: wyl_node

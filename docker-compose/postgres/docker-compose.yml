@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  postgresql:
+    container_name: "postgresql"
+    entrypoint:
+      - "docker-entrypoint.sh"
+    environment:
+      - "POSTGRES_USER=casaos"
+      - "PUID=1000"
+      - "TZ=Africa/Johannesburg"
+      - "PGID=1000"
+      - "POSTGRES_DB=casaos"
+      - "POSTGRES_PASSWORD=casaos"
+      - "GOSU_VERSION=1.17"
+      - "PG_MAJOR=16"
+      - "PG_VERSION=16.2-1.pgdg120+2"
+      - "PGDATA=/var/lib/postgresql/data"
+    hostname: "postgresql"
+    image: "postgres:16.2"
+    ipc: "private"
+    labels:
+      com.docker.compose.config-hash: "d09cc7eafebbbf1194f5d49b1a3ee5709642c9d294a580be5c15282744d0fde7"
+      com.docker.compose.container-number: "1"
+      com.docker.compose.depends_on: ""
+      com.docker.compose.image: "sha256:eb634efa7ee4668e7bb7a9afa946987699608e5cff79418d39e7c5302f6ea3e8"
+      com.docker.compose.oneoff: "False"
+      com.docker.compose.project: "postgresql"
+      com.docker.compose.project.config_files: "/var/lib/casaos/apps/postgresql/docker-compose.yml"
+      com.docker.compose.project.working_dir: "/var/lib/casaos/apps/postgresql"
+      com.docker.compose.replace: "57beee72cc233ff1868d3e127e780897570df608da8b76d6cbb5569ba3ed7464"
+      com.docker.compose.service: "postgresql"
+      com.docker.compose.version: ""
+      icon: "https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/PostgreSQL/icon.png"
+    logging:
+      driver: "json-file"
+      options: {}
+    network_mode: "host"
+    ports:
+      - "5432:5432/tcp"
+    privileged: true
+    restart: "unless-stopped"
+    security_opt:
+      - "label=disable"
+    volumes:
+      - "/6tb/postgresdbs:/var/lib/postgresql/data"

@@ -1,0 +1,62 @@
+name: watchtower-tmc
+services:
+  app:
+    cap_add:
+      - NET_ADMIN
+    cpu_shares: 90
+    command: []
+    container_name: watchtower
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    environment:
+      - TZ=Etc/UTC
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_DEBUG=true
+      - WATCHTOWER_LIFECYCLE_HOOKS=True
+      - WATCHTOWER_MONITOR_ONLY=false
+      - WATCHTOWER_POLL_INTERVAL=30
+    hostname: watchtower
+    image: containrrr/watchtower:latest
+    labels:
+      icon: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/watchtower/icon.png
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+      - type: bind
+        target: /config.json
+        source: /DATA/AppData/watchtower/config.json
+    ports: []
+    devices: []
+    network_mode: host
+x-casaos:
+  architectures:
+    - amd64
+    - arm
+    - arm64
+  author: watchtower
+  category: TMCstore
+  description:
+    en_us: A container-based solution for automating Docker container base image
+      updates.
+  developer: watchtower
+  hostname: ""
+  icon: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/watchtower/icon.png
+  index: /
+  main: app
+  port_map: ""
+  scheme: http
+  screenshot_link:
+    - https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/watchtower/screenshot-01.png
+  store_app_id: watchtower-tmc
+  tagline:
+    en_us: A container-based solution for automating Docker container base image
+      updates.
+  thumbnail: https://cdn.jsdelivr.net/gh/mariosemes/CasaOS-TMCstore@main/Apps/watchtower/thumbnail.png
+  title:
+    custom: ""
+    en_us: Watchtower

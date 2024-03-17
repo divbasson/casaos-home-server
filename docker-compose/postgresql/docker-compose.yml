@@ -1,0 +1,99 @@
+name: postgresql
+services:
+    postgresql:
+        environment:
+            GOSU_VERSION: "1.17"
+            LANG: en_US.utf8
+            PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/16/bin
+            PG_MAJOR: "16"
+            PG_VERSION: 16.2-1.pgdg120+2
+            PGDATA: /var/lib/postgresql/data
+            PGID: "1000"
+            POSTGRES_DB: casaos
+            POSTGRES_PASSWORD: casaos
+            POSTGRES_USER: casaos
+            PUID: "1000"
+            TZ: Africa/Johannesburg
+        image: postgres:16.2
+        labels:
+            icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/PostgreSQL/icon.png
+        network_mode: bridge
+        ports:
+            - target: 5432
+              published: "5432"
+              protocol: tcp
+        privileged: true
+        restart: unless-stopped
+        volumes:
+            - type: bind
+              source: /6tb/postgresdbs
+              target: /var/lib/postgresql/data
+        x-casaos:
+            envs:
+                - container: POSTGRES_USER
+                  description:
+                    en_us: ""
+                - container: PUID
+                  description:
+                    en_us: ""
+                - container: TZ
+                  description:
+                    en_us: ""
+                - container: PGID
+                  description:
+                    en_us: ""
+                - container: POSTGRES_DB
+                  description:
+                    en_us: ""
+                - container: POSTGRES_PASSWORD
+                  description:
+                    en_us: ""
+                - container: GOSU_VERSION
+                  description:
+                    en_us: ""
+                - container: LANG
+                  description:
+                    en_us: ""
+                - container: PG_MAJOR
+                  description:
+                    en_us: ""
+                - container: PG_VERSION
+                  description:
+                    en_us: ""
+                - container: PGDATA
+                  description:
+                    en_us: ""
+                - container: PATH
+                  description:
+                    en_us: ""
+            ports:
+                - container: "5432"
+                  description:
+                    en_us: ""
+            volumes:
+                - container: /var/lib/postgresql/data
+                  description:
+                    en_us: ""
+networks:
+    default:
+        name: postgresql_default
+x-casaos:
+    architectures:
+        - amd64
+    author: CasaOS User
+    category: unknown
+    description:
+        en_us: ""
+    developer: unknown
+    icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/PostgreSQL/icon.png
+    main: postgresql
+    port_map: "5432"
+    scheme: http
+    store_app_id: postgresql
+    tagline:
+        en_us: This is a compose app converted from a legacy app (CasaOS v0.4.3 or earlier)
+    thumbnail: ""
+    tips:
+        custom: This is a compose app converted from a legacy app (CasaOS v0.4.3 or earlier)
+    title:
+        en_us: postgresql

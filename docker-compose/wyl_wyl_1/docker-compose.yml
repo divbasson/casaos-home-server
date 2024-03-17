@@ -1,0 +1,85 @@
+name: wyl_wyl_1
+services:
+    wyl_wyl_1:
+        command:
+            - -n
+            - http://{SERVER_IP}:8850
+        environment:
+            DBPATH: /data/db.sqlite
+            GUIIP: 0.0.0.0
+            GUIPORT: "8840"
+            IFACE: eno1
+            IGNOREIP: "no"
+            PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            SHOUTRRR_URL: ""
+            THEME: darkly
+            TIMEOUT: "120"
+            TZ: Africa/Johannesburg
+        image: aceberg/watchyourlan
+        labels:
+            icon: https://th.bing.com/th/id/OIP.3R1Blc7rhJey6fgVSmyONAHaHa?rs=1&pid=ImgDetMain
+        network_mode: host
+        restart: unless-stopped
+        volumes:
+            - type: bind
+              source: /root/.dockerdata/wyl
+              target: /data
+        x-casaos:
+            envs:
+                - container: TZ
+                  description:
+                    en_us: ""
+                - container: IFACE
+                  description:
+                    en_us: ""
+                - container: DBPATH
+                  description:
+                    en_us: ""
+                - container: GUIIP
+                  description:
+                    en_us: ""
+                - container: GUIPORT
+                  description:
+                    en_us: ""
+                - container: TIMEOUT
+                  description:
+                    en_us: ""
+                - container: SHOUTRRR_URL
+                  description:
+                    en_us: ""
+                - container: THEME
+                  description:
+                    en_us: ""
+                - container: IGNOREIP
+                  description:
+                    en_us: ""
+                - container: PATH
+                  description:
+                    en_us: ""
+            volumes:
+                - container: /data
+                  description:
+                    en_us: ""
+networks:
+    default:
+        name: wyl_wyl_1_default
+x-casaos:
+    architectures:
+        - amd64
+    author: CasaOS User
+    category: unknown
+    description:
+        en_us: ""
+    developer: unknown
+    icon: https://th.bing.com/th/id/OIP.3R1Blc7rhJey6fgVSmyONAHaHa?rs=1&pid=ImgDetMain
+    main: wyl_wyl_1
+    port_map: "8840"
+    scheme: http
+    store_app_id: wyl_wyl_1
+    tagline:
+        en_us: This is a compose app converted from a legacy app (CasaOS v0.4.3 or earlier)
+    thumbnail: ""
+    tips:
+        custom: This is a compose app converted from a legacy app (CasaOS v0.4.3 or earlier)
+    title:
+        en_us: WatchYourLan
