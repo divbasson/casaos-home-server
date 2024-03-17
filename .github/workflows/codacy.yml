@@ -38,10 +38,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Run GitLeaks
       # You may pin to the exact commit or the version.
       # uses: gacts/gitleaks@790c062f441e96d9efb842b6baa0e60c037e9408
-        uses: gacts/gitleaks@v1.2.0
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2.3.4
         with:
           # GitLeaks version
           version: # default is latest
