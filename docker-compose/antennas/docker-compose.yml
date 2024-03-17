@@ -1,0 +1,40 @@
+name: poetic_manuel
+services:
+  antennas:
+    cap_add:
+      - NET_ADMIN
+    cpu_shares: 90
+    command: []
+    container_name: antennas
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    environment:
+      - ANTENNAS_URL=
+      - TUNER_COUNT=6
+      - TVHEADEND_URL=
+    image: thejf/antennas
+    ports:
+      - target: 5004
+        published: "5004"
+        protocol: tcp
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/antennas/
+        target: /antennas/config
+    devices: []
+    network_mode: bridge
+    privileged: false
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://github.com/jfarseneau/antennas/blob/main/public/images/favicon-96x96.png?raw=true
+  index: /
+  port_map: "5004"
+  scheme: http
+  store_app_id: antennas
+  title:
+    custom: antennas

@@ -1,0 +1,49 @@
+name: refreshing_pete
+services:
+  cabernet:
+    cap_add:
+      - NET_ADMIN
+    cpu_shares: 90
+    command: []
+    container_name: cabernet
+    deploy:
+      resources:
+        limits:
+          memory: 23999M
+    environment:
+      - GUID=0
+      - PUID=0
+      - TZ=TZ
+    image: ghcr.io/cabernetwork/cabernet:latest
+    ports:
+      - target: 5004
+        published: "5005"
+        protocol: tcp
+      - target: 6077
+        published: "6077"
+        protocol: tcp
+      - target: 65001
+        published: "65001"
+        protocol: tcp
+    privileged: true
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: /DATA/AppData/cabernet/
+        target: /app
+      - type: bind
+        source: /6tb
+        target: /root/.cabernet/key.txt
+    devices: []
+    network_mode: host
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://github.com/google/docsy/blob/main/assets/icons/logo.png?raw=true
+  index: /
+  port_map: "6078"
+  scheme: http
+  store_app_id: cabernet
+  title:
+    custom: cabernet
