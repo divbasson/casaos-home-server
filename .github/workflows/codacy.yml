@@ -42,20 +42,8 @@ jobs:
       # uses: gacts/gitleaks@790c062f441e96d9efb842b6baa0e60c037e9408
       - name: Gitleaks
         uses: gitleaks/gitleaks-action@v2.3.4
-        with:
-          # GitLeaks version
-          version: # default is latest
-          # Path to the config file
-          config-path: # optional
-          # Path to source (git repo, directory, file; current working directory by default)
-          path: # optional
-          # Set it to "true" to run GitLeaks, or "false" if you don't want it to run (you can do this later manually)
-          run: # optional, default is true
-          # Set "false" for exiting without an error when GitLeaks run failed
-          fail-on-error: # optional, default is true
-          # GitHub auth token. Since there's a default, this is typically not supplied by the user
-          github-token: # optional, default is ${{ github.token }}
-          
+        timeout-minutes: 1
+         
 
       # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
       - name: Run Codacy Analysis CLI
