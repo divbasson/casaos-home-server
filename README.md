@@ -12,6 +12,9 @@ Welcome to the CasaOS Home Server GitHub Wiki! This wiki is intended to provide 
 4. [Contributing](#contributing)
 5. [License](#license)
 
+## Status:
+[![Codeac](https://static.codeac.io/badges/2-710467054.svg "Codeac")](https://app.codeac.io/github/divbasson/casaos-home-server)
+
 
 ## Introduction
 
