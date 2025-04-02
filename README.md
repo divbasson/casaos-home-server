@@ -52,7 +52,7 @@ Whether you're setting up a personal cloud, media server, or self-hosted applica
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-repo/home-server-setup.git](https://github.com/divbasson/casaos-home-server.git
+git clone https://github.com/divbasson/casaos-home-server.git
 cd home-server-setup
 ```
 
