@@ -1,16 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# This workflow checks out code, performs a Codacy security scan
-# and integrates the results with the
-# GitHub Advanced Security code scanning feature.  For more information on
-# the Codacy security scan action usage and parameters, see
-# https://github.com/codacy/codacy-analysis-cli-action.
-# For more information on Codacy Analysis CLI in general, see
-# https://github.com/codacy/codacy-analysis-cli.
-
 name: Codacy Security Scan
 
 on:
@@ -36,8 +23,8 @@ jobs:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
-      # Set output to environment file
       
+      # Set output to environment file
       - name: Set SARIF output path
         run: echo "sarif_file=results.sarif" >> $GITHUB_ENV
         
@@ -58,8 +45,12 @@ jobs:
           gh-code-scanning-compat: true
           max-allowed-issues: 2147483647
 
+      # Debugging step to check if the SARIF file is present
+      - name: List output directory
+        run: ls -l
+
       # Upload SARIF results
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ${{ env.sarif_file }}  
+          sarif_file: ${{ env.sarif_file }}
