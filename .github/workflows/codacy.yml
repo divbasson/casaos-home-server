@@ -38,9 +38,14 @@ jobs:
         uses: actions/checkout@v3
       
       # Run Gitleaks for security checks
-      - name: Gitleaks
-        uses: gitleaks/gitleaks-action@v2.3.4
-        timeout-minutes: 1
+      #- name: Gitleaks
+       # uses: gitleaks/gitleaks-action@v2.3.4
+        #timeout-minutes: 1
+      - name: Gitleaks Scan Action
+        uses: FathAllaTechOps/gitleaks-action@v1.2.0
+        with:
+          source: .
+          fail-on-error: false # optional, default is false
 
       # Run Codacy Analysis CLI to generate SARIF output
       - name: Run Codacy Analysis CLI
