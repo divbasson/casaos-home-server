@@ -1,6 +1,6 @@
 # 🏡 Home Server Setup Script
 
-![Home Server Banner](https://via.placeholder.com/1200x400?text=Home+Server+Setup+Script)
+## Home Server Banner ##
 
 This script is designed to **automate the setup of a home server environment**. It provides an easy way to install and configure **CasaOS** or **Umbrel**, two popular solutions for self-hosting applications and managing your home server. Additionally, it includes optional tools, GPU driver support, and system configurations to enhance your server's capabilities.
 
@@ -78,12 +78,8 @@ sudo ./setup.sh
 ### CasaOS
 A sleek, modern home server solution for managing your smart home and applications.
 
-![CasaOS Screenshot](https://via.placeholder.com/800x400?text=CasaOS+Screenshot)
-
 ### Umbrel
 A personal server OS for self-hosting applications and services.
-
-![Umbrel Screenshot](https://via.placeholder.com/800x400?text=Umbrel+Screenshot)
 
 ---
 
@@ -136,5 +132,3 @@ Contributions are welcome! Feel free to submit issues or pull requests to improv
 If you encounter any issues or have questions, please open an issue in the repository or contact the maintainer.
 
 ---
-
-![Footer Graphic](https://via.placeholder.com/1200x200?text=Happy+Home+Server+Setup!)
