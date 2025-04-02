@@ -36,11 +36,8 @@ jobs:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       # Run Gitleaks for security checks
-      #- name: Gitleaks
-       # uses: gitleaks/gitleaks-action@v2.3.4
-        #timeout-minutes: 1
       - name: Gitleaks Scan Action
         uses: FathAllaTechOps/gitleaks-action@v1.2.0
         with:
@@ -56,6 +53,7 @@ jobs:
           format: sarif
           gh-code-scanning-compat: true
           max-allowed-issues: 2147483647
+
       # Set output to environment file
       - name: Set SARIF output path
         run: echo "sarif_file=results.sarif" >> $GITHUB_ENV
@@ -64,5 +62,4 @@ jobs:
       - name: Upload SARIF results file
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ${{ env.sarif_file }}
-  
+          sarif_file: ${{ env.sarif_file }}  
