@@ -1,109 +1,140 @@
-# CasaOS Home Server
+# 🏡 Home Server Setup Script
 
-Welcome to the CasaOS Home Server GitHub Wiki! This wiki is intended to provide documentation, instructions, and additional information related to the CasaOS Home Server project.
+![Home Server Banner](https://via.placeholder.com/1200x400?text=Home+Server+Setup+Script)
 
-## Table of Contents
+This script is designed to **automate the setup of a home server environment**. It provides an easy way to install and configure **CasaOS** or **Umbrel**, two popular solutions for self-hosting applications and managing your home server. Additionally, it includes optional tools, GPU driver support, and system configurations to enhance your server's capabilities.
 
-1. [Introduction](#introduction)
-2. [Getting Started](#getting-started)
-    - [Installation](#installation)
-    - [Configuration](#configuration)
-3. [Usage](#usage)
-4. [Contributing](#contributing)
-5. [License](#license)
+Whether you're setting up a personal cloud, media server, or self-hosted applications, this script simplifies the process and ensures your server is ready to go with minimal effort.
 
-## Status:
-[![Codeac](https://static.codeac.io/badges/2-710467054.svg "Codeac")](https://app.codeac.io/github/divbasson/casaos-home-server)
+---
 
+## 🚀 Features
 
-## Introduction
+### ✅ CasaOS or Umbrel Installation
+- **Choose between CasaOS or Umbrel** during the setup process:
+  - **CasaOS**: A sleek, modern home server solution for managing your smart home and applications.
+  - **Umbrel**: A personal server OS for self-hosting applications and services.
 
-The CasaOS Home Server is a project aimed at creating a home server solution to manage and control various aspects of your smart home, including devices, automation, and more. This repository serves as the primary source for the CasaOS Home Server application.
-=======
-- You have administrative privileges (the ability to use `sudo`).
-- You are running a compatible Linux distribution with `apt` package manager.
-- Your system has an internet connection to download packages.
-- You have curl installed (the ability to use `curl`).
-- 
-## Usage
+### ✅ GPU Driver Support
+- Detects **NVIDIA** or **AMD** GPUs and installs appropriate drivers.
+- Configures **NVIDIA Container Toolkit** for GPU-enabled Docker containers.
+- Updates the Docker `daemon.json` file to set **NVIDIA** as the default runtime.
 
+### ✅ Docker and System Configuration
+- Installs and configures **Docker** for containerized applications.
+- Adds the **NVIDIA Container Runtime** to Docker for GPU acceleration.
+- Updates and upgrades the system.
+- Installs required dependencies (`curl`, `wget`, `git`, etc.).
+- Configures logging and progress tracking.
 
-## Getting Started
+### ✅ Optional Tools
+- Prompts for the installation of additional tools like:
+  - **Ollama**
+  - **OpenWebUI**
+  - **NVIDIA CUDA Toolkit**
 
-### Installation
+### ✅ User-Friendly Features
+- Provides a selection menu for choosing between CasaOS and Umbrel.
+- Supports **dry-run mode** to simulate actions without making changes.
+- Displays progress updates and logs all actions to a specified log file.
 
-To get started with CasaOS Home Server, you can follow these steps:
+---
 
-1. Clone the repository to your local machine:
+## 📋 Requirements
 
-   ```shell
-   git clone https://github.com/divbasson/casaos-home-server.git
-   
-# Change directory to the project folder
-cd casaos-home-server
+- **Supported OS**: Ubuntu-based distributions.
+- **Required Tools**: `curl`, `wget`, `git`, `sudo`.
+- **Root Privileges**: Required for system modifications.
 
+---
 
-# Install dependencies (you may need Node.js and npm)
-npm install
-=======
-   ```bash
-   ./setup.sh
-   ```
+## 🛠️ Usage
 
-5. Follow any prompts or instructions provided by the script.
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-repo/home-server-setup.git
+cd home-server-setup
+```
 
-## Script Overview
+### 2️⃣ Make the Script Executable
+```bash
+chmod +x setup.sh
+```
 
-Here's an overview of what the script does:
+### 3️⃣ Run the Script
+```bash
+sudo ./setup.sh
+```
 
-1. Updates and upgrades your system's package lists and installed packages.
-2. Installs the `build-essential` package for development tools.
-3. Installs Homebrew, a package manager for macOS and Linux.
-4. Configures Homebrew for your system.
-5. Runs `brew doctor` to check the Homebrew installation.
-6. Installs the GCC compiler using Homebrew.
-7. Installs Cockpit, a web-based server management tool.
-8. Sets up the 45drives repository.
-9. Installs Cockpit packages for file sharing and identities.
-10. Installs FFmpeg and checks for NVIDIA GPU presence and installs appropriate drivers if found.
-11. Checks for AMD GPU presence and installs appropriate drivers if found.
-13. Updates and upgrades your system again.
-14. Installs CasaOS, an operating system for managing your home server.
-15. Registers multiple app stores in CasaOS.
+### 4️⃣ Optional Flags
+- `--dry-run`: Simulate the script without making changes.
+- `--log-file PATH`: Specify a custom log file (default: `/var/log/homeserver_setup.log`).
+- `--help`: Show help message and usage instructions.
 
-**Note:** Please review the script carefully to understand what it's doing before running it on your system, and ensure it is compatible with your system configuration.
+---
 
-### deploy_apps.sh
+## 🖥️ Installation Options
 
-   ```bash
-   chmod +x deploy_apps.sh
-   ```
+### CasaOS
+A sleek, modern home server solution for managing your smart home and applications.
 
-   ```bash
-   ./deploy_apps.sh
-   ```
+![CasaOS Screenshot](https://via.placeholder.com/800x400?text=CasaOS+Screenshot)
 
-Once you have successfully executed `setup.sh`, you can proceed to run the `deploy_apps.sh` script.
+### Umbrel
+A personal server OS for self-hosting applications and services.
 
-The `deploy_apps.sh` script automates the process of deploying your applications using Docker Compose. It iterates through each folder in the current directory, runs `docker-compose up` in each folder, and waits for one container to complete before moving on to the next folder. This ensures that each application is correctly deployed and running before proceeding to the next one.
+![Umbrel Screenshot](https://via.placeholder.com/800x400?text=Umbrel+Screenshot)
 
-To run `deploy_apps.sh`, make sure you have completed the setup process by executing `setup.sh`. Then, navigate to the project directory and execute the following command:
+---
 
+## 🖼️ Progress Tracking
 
-Make sure to run `deploy_apps.sh` after `setup.sh` to ensure successful deployment of your applications.
+The script provides a visual progress bar to keep you informed about the installation process:
 
-Please note that both `setup.sh` and `deploy_apps.sh` scripts should be executable. If they are not, you can make them executable by running the following command for each script:
+```
+Progress: [██████████          ] 50% (5/10)
+```
 
+---
 
-That's it! You should now be able to easily deploy your applications using the `deploy_apps.sh` script after running the initial setup with `setup.sh`.
+## ⚙️ Configuration
 
+The script generates a default configuration file at `~/.homeserver_setup.conf` if it does not exist. You can customize the following:
 
-## Caution
+- **Log File Path**: Change the default log file location.
+- **CasaOS App Stores**: Add custom app store URLs.
 
-Running this script will make system-level changes, including installing and configuring software, drivers, and repositories. Make sure you have backups and are aware of the potential consequences of these actions.
+Example configuration:
+```bash
+LOG_FILE="/var/log/homeserver_setup.log"
+CASAOS_APP_STORES="https://my-custom-store.com/store.zip https://another-store.org/repo.zip"
+```
 
-The script may take some time to complete, depending on your system's performance and the speed of your internet connection.
+---
 
-## Disclaimer
+## 🛡️ Disclaimer
 
-This script is provided as-is and without any warranties. Use it at your own risk, and ensure it is appropriate for your specific system and use case.
+- This script modifies your system. It is recommended to back up important data before proceeding.
+- Use at your own risk. The authors are not responsible for any issues caused by running this script.
+
+---
+
+## 📜 License
+
+This project is licensed under the [Unlicense](LICENSE), meaning it is free and unencumbered software released into the public domain.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests to improve this script.
+
+---
+
+## 📧 Support
+
+If you encounter any issues or have questions, please open an issue in the repository or contact the maintainer.
+
+---
+
+![Footer Graphic](https://via.placeholder.com/1200x200?text=Happy+Home+Server+Setup!)
