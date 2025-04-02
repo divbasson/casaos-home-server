@@ -1,6 +1,6 @@
 # 🏡 Home Server Setup Script
 
-## Home Server Banner ##
+## Home Server ##
 
 This script is designed to **automate the setup of a home server environment**. It provides an easy way to install and configure **CasaOS** or **Umbrel**, two popular solutions for self-hosting applications and managing your home server. Additionally, it includes optional tools, GPU driver support, and system configurations to enhance your server's capabilities.
 
